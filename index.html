@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADAPT Academy x MADE For All Foundation — Partnership Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #e2dd9f;
+      --black: #000;
+      --dark: #0a0a0a;
+      --dark2: #111;
+      --dark3: #181818;
+      --white: #fff;
+      --gray: #aaa;
+      --light-gray: #ccc;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4, h5 {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(226,221,159,0.15);
+      padding: 0.9rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    nav .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--gold); }
+    nav .nav-links { display: flex; gap: 1.5rem; }
+    nav .nav-links a { color: var(--light-gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+    nav .nav-links a:hover { color: var(--gold); text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: radial-gradient(ellipse at 50% 30%, rgba(226,221,159,0.06) 0%, transparent 70%);
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(226,221,159,0.3), transparent);
+    }
+    .partnership-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.4rem 1.2rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero .sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--gray);
+      max-width: 700px;
+      margin: 1.2rem auto 2.5rem;
+      font-weight: 300;
+    }
+    .hero-stats {
+      display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center;
+      margin-top: 1rem;
+    }
+    .hero-stats .stat { text-align: center; }
+    .hero-stats .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--gold); }
+    .hero-stats .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1.5rem;
+    }
+    .section-title span { color: var(--gold); }
+    .section-text {
+      color: var(--gray);
+      font-size: 1.05rem;
+      max-width: 800px;
+      font-weight: 300;
+    }
+
+    /* ABOUT */
+    .about { background: var(--dark); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      margin-top: 3rem;
+    }
+    .about-card {
+      background: var(--dark2);
+      border: 1px solid rgba(226,221,159,0.1);
+      padding: 2rem;
+      border-radius: 4px;
+    }
+    .about-card h4 {
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .about-card p { color: var(--gray); font-size: 0.95rem; font-weight: 300; }
+
+    /* WHY ADAPT */
+    .why-adapt { background: var(--black); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      margin-top: 3rem;
+    }
+    .why-card {
+      background: var(--dark2);
+      border: 1px solid rgba(226,221,159,0.08);
+      padding: 2rem;
+      border-radius: 4px;
+      position: relative;
+    }
+    .why-card .icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .why-card h4 {
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .why-card p { color: var(--gray); font-size: 0.9rem; font-weight: 300; }
+
+    /* INCLUDED */
+    .included { background: var(--dark); }
+    .included-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .included-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.2rem;
+      background: var(--dark2);
+      border-radius: 4px;
+      border-left: 2px solid var(--gold);
+    }
+    .included-item .bullet {
+      color: var(--gold); font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem;
+    }
+    .included-item h5 {
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+    .included-item p { color: var(--gray); font-size: 0.85rem; font-weight: 300; }
+
+    /* CULTURE */
+    .culture { background: var(--black); }
+    .culture-content {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+    .culture-text { color: var(--gray); font-size: 1rem; font-weight: 300; }
+    .culture-text p { margin-bottom: 1.2rem; }
+    .culture-highlights {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .culture-highlight {
+      background: var(--dark2);
+      border: 1px solid rgba(226,221,159,0.08);
+      padding: 1.5rem;
+      border-radius: 4px;
+    }
+    .culture-highlight h4 { color: var(--gold); font-size: 1.2rem; margin-bottom: 0.3rem; }
+    .culture-highlight p { color: var(--gray); font-size: 0.9rem; font-weight: 300; }
+
+    /* COACHES */
+    .coaches { background: var(--dark); }
+    .coaches-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      margin-top: 3rem;
+    }
+    .coach-card {
+      background: var(--dark2);
+      border: 1px solid rgba(226,221,159,0.08);
+      padding: 2rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .coach-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--gold);
+      background: rgba(226,221,159,0.05);
+    }
+    .coach-card h4 { font-size: 1.5rem; color: var(--white); margin-bottom: 0.2rem; }
+    .coach-card .role { color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.8rem; font-weight: 500; }
+    .coach-card p { color: var(--gray); font-size: 0.85rem; font-weight: 300; text-align: left; }
+
+    /* SUMMER */
+    .summer {
+      background: var(--black);
+      border-top: 1px solid rgba(226,221,159,0.1);
+      border-bottom: 1px solid rgba(226,221,159,0.1);
+    }
+    .summer-flex {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+    .summer-info p { color: var(--gray); font-size: 0.95rem; font-weight: 300; margin-bottom: 1rem; }
+    .summer-highlights {
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .summer-highlights li {
+      list-style: none;
+      color: var(--gray);
+      font-size: 0.9rem;
+      padding-left: 1.5rem;
+      position: relative;
+      font-weight: 300;
+    }
+    .summer-highlights li::before {
+      content: '▸';
+      position: absolute; left: 0; color: var(--gold);
+    }
+
+    /* SCHOLARSHIP */
+    .scholarship { background: var(--dark); }
+    .scholarship-box {
+      background: var(--dark2);
+      border: 1px solid var(--gold);
+      padding: 3rem;
+      border-radius: 4px;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .scholarship-box .price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--gold);
+    }
+    .scholarship-box .price-sub {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .scholarship-details {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;
+      text-align: left;
+      margin-top: 2rem;
+    }
+    .scholarship-detail h5 {
+      color: var(--white); font-size: 1.1rem; margin-bottom: 0.3rem;
+    }
+    .scholarship-detail p { color: var(--gray); font-size: 0.9rem; font-weight: 300; }
+
+    /* ALREADY */
+    .already {
+      background: var(--black);
+      text-align: center;
+    }
+    .already-badge {
+      display: inline-block;
+      background: rgba(226,221,159,0.08);
+      border: 1px solid rgba(226,221,159,0.25);
+      padding: 1.2rem 2.5rem;
+      border-radius: 4px;
+      margin-top: 2rem;
+    }
+    .already-badge p { color: var(--gold); font-size: 1.1rem; font-weight: 500; }
+    .already-badge .small { color: var(--gray); font-size: 0.85rem; font-weight: 300; margin-top: 0.3rem; }
+
+    /* BAM BRAND */
+    .brand { background: var(--dark); }
+    .brand-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;
+      margin-top: 3rem;
+    }
+    .brand-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .brand-item .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .brand-item h5 { color: var(--white); font-size: 1rem; margin-bottom: 0.2rem; }
+    .brand-item p { color: var(--gray); font-size: 0.85rem; font-weight: 300; }
+
+    /* CTA */
+    .cta {
+      background: radial-gradient(ellipse at 50% 50%, rgba(226,221,159,0.06) 0%, var(--black) 70%);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .cta h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
+    .cta p { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; font-weight: 300; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      padding: 0.9rem 3rem;
+      letter-spacing: 0.05em;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.85; text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav .nav-links { display: none; }
+      .about-grid, .culture-content, .summer-flex, .brand-grid { grid-template-columns: 1fr; }
+      .why-grid, .coaches-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 2rem; }
+      .scholarship-box { padding: 2rem; }
+      section { padding: 3.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">ADAPT ACADEMY</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#why">Why ADAPT</a>
+    <a href="#included">What's Included</a>
+    <a href="#coaches">Coaches</a>
+    <a href="#summer">Summer Academy</a>
+    <a href="#scholarship">Partnership</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="partnership-badge">Partnership Proposal</div>
+  <h1>ADAPT ACADEMY <span>&times;</span><br/>MADE FOR ALL <span>FOUNDATION</span></h1>
+  <p class="sub">Scholarshipping underserved athletes into South Florida's most development-focused basketball program — where growth, family, and opportunity come first.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-number">6</div>
+      <div class="stat-label">Days Per Week</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">9-10</div>
+      <div class="stat-label">Max Per Team</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">32</div>
+      <div class="stat-label">Countries Coached</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">$400</div>
+      <div class="stat-label">/ Month (Scholarship Rate)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-label">About ADAPT Academy</div>
+    <h2 class="section-title">Club Basketball Done <span>the Right Way</span></h2>
+    <p class="section-text">In a youth basketball world focused on wins, rankings, and exposure, ADAPT focuses on what actually lasts: real development, confidence, and love for the game. Based out of DETAIL Miami in Miami Lakes, ADAPT Academy is South Florida's most innovative AAU program — blending European-style basketball development with deep character building and a true family environment.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h4>European Development Model</h4>
+        <p>Our leadership has trained and studied basketball across 32 countries and 12 European basketball cultures. We bring the best of international development: more practices than games, stable rosters, teaching players to read the game instead of memorizing plays, and building team-first basketball IQ through live situations rather than robotic drills.</p>
+      </div>
+      <div class="about-card">
+        <h4>Development Over Winning</h4>
+        <p>We don't chase wins, rankings, or exposure. We build environments where progress is unavoidable. Our athletes learn how to think the game, make quicker and smarter decisions, handle pressure, compete with purpose, and ultimately enjoy basketball again. When development comes first, everything else follows.</p>
+      </div>
+      <div class="about-card">
+        <h4>Everything Under One Roof</h4>
+        <p>ADAPT operates as a full HQ for basketball and human development. Training, psychological development, film sessions, performance training, recovery, academic support, mentorship — all available at our home facility. No driving between multiple locations. One stop, all the resources your athlete needs.</p>
+      </div>
+      <div class="about-card">
+        <h4>Small Rosters, Real Attention</h4>
+        <p>Each team has a maximum of 9 to 10 players. That means real playing time, genuine coach relationships, and true development — not sitting on a bench hoping to get minutes. Every athlete gets seen, heard, and developed intentionally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ADAPT FOR SCHOLARSHIP ATHLETES -->
+<section class="why-adapt" id="why">
+  <div class="container">
+    <div class="section-label">Why ADAPT for Scholarship Athletes</div>
+    <h2 class="section-title">Built for Athletes Who <span>Need It Most</span></h2>
+    <p class="section-text">ADAPT is uniquely positioned for nonprofits looking to invest in underserved youth. Here's why this isn't just another basketball program.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="icon">🏠</span>
+        <h4>After-School Home Base</h4>
+        <p>Scholarship athletes can come to the facility right after school every day — do homework, train, hang out, and be in a positive environment until practice and team activities begin. A safe, supervised space that keeps athletes engaged and off the streets.</p>
+      </div>
+      <div class="why-card">
+        <span class="icon">🧠</span>
+        <h4>Beyond Basketball</h4>
+        <p>Mental health and mindset training, life skills seminars, academic check-ins, college recruiting guidance, and mentorship from college and pro athletes. We develop the whole person, not just the player.</p>
+      </div>
+      <div class="why-card">
+        <span class="icon">👨‍👩‍👧‍👦</span>
+        <h4>True Family Culture</h4>
+        <p>This isn't a tagline — it's how we operate. Athletes who came through the program years ago still stay connected and get love from the staff. We genuinely care about each individual and build lifelong relationships that extend far beyond the court.</p>
+      </div>
+      <div class="why-card">
+        <span class="icon">📈</span>
+        <h4>Individualized Development</h4>
+        <p>Custom player development plans tailored to each athlete's specific needs. Film sessions, one-on-one skill work, and continuous feedback so every athlete has a clear path to improvement regardless of where they start.</p>
+      </div>
+      <div class="why-card">
+        <span class="icon">💪</span>
+        <h4>6 Days a Week, All-In</h4>
+        <p>This program isn't part-time. Athletes get team practices, skills trainings, performance sessions, film, open gym, and tournaments — six days a week. The kind of consistent, structured environment that creates real transformation.</p>
+      </div>
+      <div class="why-card">
+        <span class="icon">🚗</span>
+        <h4>Carpool Support</h4>
+        <p>We understand that transportation can be a barrier for underserved families. Our staff actively works to help coordinate carpooling among families to make sure athletes can get to the facility consistently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="included" id="included">
+  <div class="container">
+    <div class="section-label">Complete Development Package</div>
+    <h2 class="section-title">What's <span>Included</span></h2>
+    <p class="section-text">Everything an athlete needs to develop — basketball, body, and mind — all in one program, six days a week.</p>
+    <div class="included-grid">
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>2 Team Practices Weekly</h5>
+          <p>Tactical training focused on building high-IQ players and strategic gameplay</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>3 Skills Trainings Weekly</h5>
+          <p>Individual skill development sessions at our facility</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>3 Performance Training Sessions</h5>
+          <p>Athleticism enhancement and injury prevention training</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>1-2 Tournaments Monthly + Scrimmages</h5>
+          <p>Regular competitive opportunities to showcase skills and gain game experience</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>Psychological Training</h5>
+          <p>Mental skills development for basketball performance and life success</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>Film Sessions</h5>
+          <p>Video analysis helping athletes become true students of the game</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>Academic Check-ins</h5>
+          <p>Academic monitoring and personal support for life challenges</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>Custom Player Development Plans</h5>
+          <p>Individualized programs tailored to each athlete's specific needs</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>Open Gym Access</h5>
+          <p>Use the home gym during designated hours — right after school every day</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>College & Pro Athlete Mentorship</h5>
+          <p>Guidance from experienced players who've reached the next level</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>Life Skills Seminars</h5>
+          <p>Mental health, mindset, adversity, basketball IQ, college recruiting, and more</p>
+        </div>
+      </div>
+      <div class="included-item">
+        <span class="bullet">▸</span>
+        <div>
+          <h5>Professional Content</h5>
+          <p>High-quality photos and game film for portfolios and recruiting</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE -->
+<section class="culture" id="culture">
+  <div class="container">
+    <div class="section-label">Culture & Family</div>
+    <h2 class="section-title">More Than a Team — <span>a Family</span></h2>
+    <div class="culture-content">
+      <div class="culture-text">
+        <p>Before anything else, our mission is to build better humans and foster a close family environment for the athletes we serve. At ADAPT, we don't just coach players for a season and move on — we invest in them as people.</p>
+        <p>Athletes who came through our programs years ago still get love from the staff, still come back to train, and still feel like they belong. That's what family means to us. When a scholarship athlete joins ADAPT, they're not a charity case — they're part of the family. They'll be treated, supported, and developed just like every other athlete in the program.</p>
+        <p>Our coaches build genuine relationships. They know what's going on in their athletes' lives — academically, personally, and on the court. That level of care is what makes the difference for young people who need it most.</p>
+      </div>
+      <div class="culture-highlights">
+        <div class="culture-highlight">
+          <h4>After-School Access</h4>
+          <p>Athletes can arrive right after school to do homework, train, hang out, and be in a positive environment until practices and team activities begin. A second home.</p>
+        </div>
+        <div class="culture-highlight">
+          <h4>Lifelong Relationships</h4>
+          <p>We still show love to athletes from years ago. Once you're part of ADAPT, you're part of the family — that doesn't have an expiration date.</p>
+        </div>
+        <div class="culture-highlight">
+          <h4>Holistic Support</h4>
+          <p>Academic monitoring, mental health resources, life skills seminars, and personal check-ins. We see the full picture of every young person we serve.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COACHES -->
+<section class="coaches" id="coaches">
+  <div class="container">
+    <div class="section-label">Meet the Team</div>
+    <h2 class="section-title">Elite Coaching, <span>Real Mentorship</span></h2>
+    <p class="section-text">A full-time coaching staff with international experience, deep basketball knowledge, and a genuine commitment to athlete development.</p>
+    <div class="coaches-grid">
+      <div class="coach-card">
+        <div class="coach-avatar">CA</div>
+        <h4>Coleman Ayers</h4>
+        <div class="role">Founder & Head Trainer</div>
+        <p>Co-founded ADAPT Academy and By Any Means Basketball. 10+ years coaching experience across 32 countries. Coaching experience with youth, NCAA, and professional athletes. Creates film breakdowns and training programs for NBA and EuroLeague players year-round. Author of <em>Deep Skill</em>, #1 on Amazon for Basketball Coaching. Owner of DETAIL Miami. 600K+ global audience.</p>
+      </div>
+      <div class="coach-card">
+        <div class="coach-avatar">ME</div>
+        <h4>Mike Eluki</h4>
+        <div class="role">Director of Operations</div>
+        <p>Originally from Brussels, Belgium, Mike has established himself as the gym's Swiss army knife. Handles operations, coaching, and program coordination across ADAPT and DETAIL Miami. His European basketball background and relentless work ethic make him an invaluable part of the team — both on the court and behind the scenes.</p>
+      </div>
+      <div class="coach-card">
+        <div class="coach-avatar">EL</div>
+        <h4>Elijah Lomax</h4>
+        <div class="role">Head Coach / Director of Youth Development</div>
+        <p>Elijah joined the team in 2022 as an intern and quickly worked his way up to Director of Youth Development. A natural leader with deep knowledge of player development, Elijah runs team practices, manages player progress, and serves as a daily mentor for every athlete in the program.</p>
+      </div>
+    </div>
+    <p style="color: var(--gray); font-size: 0.9rem; text-align: center; margin-top: 2rem; font-weight: 300;">Plus additional full-time coaching and content staff including Cam Wells (Director of Content) and Eli White (Coach/Content).</p>
+  </div>
+</section>
+
+<!-- SUMMER ACADEMY -->
+<section class="summer" id="summer">
+  <div class="container">
+    <div class="section-label">Bonus Opportunity</div>
+    <h2 class="section-title">Summer Academy — <span>An Added Experience</span></h2>
+    <div class="summer-flex">
+      <div class="summer-info">
+        <p>In addition to the year-round ADAPT program, scholarship athletes could also attend our renowned <strong>Summer Academy</strong> at DETAIL Miami for select weeks during the summer. For three consecutive summers, athletes from around the world have traveled to Miami for this life-changing training experience.</p>
+        <p>The Summer Academy offers daily on-court sessions, performance training, competitive open runs and tournaments, recovery, unique Miami experiences, and exposure to a truly global basketball community — athletes from multiple countries and US states training side by side.</p>
+        <p>This could serve as an incredible supplemental experience for scholarship athletes during school breaks — keeping them active, developing, and connected to the basketball family year-round.</p>
+      </div>
+      <div>
+        <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 1rem;">Summer Academy Includes:</h4>
+        <ul class="summer-highlights">
+          <li>Daily on-court skills and team training sessions</li>
+          <li>Performance training and supplemental workouts</li>
+          <li>Filmed open runs and tournament-style games</li>
+          <li>Recovery specialist access</li>
+          <li>Miami experiences and sightseeing 1-2x per week</li>
+          <li>Professional content and media features</li>
+          <li>College and pro athlete mentorship</li>
+          <li>Free Virtual Academy program post-summer</li>
+          <li>Athletes from 30+ countries and all US regions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND -->
+<section class="brand" id="brand">
+  <div class="container">
+    <div class="section-label">The By Any Means Network</div>
+    <h2 class="section-title">Powered by a <span>Global Brand</span></h2>
+    <p class="section-text">ADAPT Academy is backed by By Any Means Basketball — a globally recognized basketball development brand with reach, resources, and relationships that directly benefit every athlete in the program.</p>
+    <div class="brand-grid">
+      <div class="brand-item">
+        <div class="num">01</div>
+        <div>
+          <h5>Global Audience & Exposure</h5>
+          <p>600K+ followers across platforms. Athletes in the program get featured in professional content seen by basketball communities worldwide.</p>
+        </div>
+      </div>
+      <div class="brand-item">
+        <div class="num">02</div>
+        <div>
+          <h5>Pro & College Connections</h5>
+          <p>Direct relationships with NBA, EuroLeague, and NCAA programs. When performance and attitude warrant it, coaches connect athletes to the next level.</p>
+        </div>
+      </div>
+      <div class="brand-item">
+        <div class="num">03</div>
+        <div>
+          <h5>International Network</h5>
+          <p>Locations in Miami, San Diego, Toronto, New York, West Virginia, and San Jose — plus global training projects across 32 countries.</p>
+        </div>
+      </div>
+      <div class="brand-item">
+        <div class="num">04</div>
+        <div>
+          <h5>DETAIL Miami Facility</h5>
+          <p>Our home base is a dedicated basketball facility with everything under one roof — court, training space, film room, and more. Not a shared rec center — a real basketball development headquarters.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALREADY DOING THIS -->
+<section class="already">
+  <div class="container">
+    <div class="section-label">Scholarship Track Record</div>
+    <h2 class="section-title">We Already <span>Do This</span></h2>
+    <p class="section-text" style="margin: 0 auto;">Giving back isn't new for us. ADAPT Academy already provides one scholarship spot per team for a deserving athlete who otherwise couldn't afford the program. A partnership with MADE For All would allow us to expand this impact and welcome more underserved athletes into the family.</p>
+    <div class="already-badge">
+      <p>1 Scholarship Athlete Per Team — Already In Place</p>
+      <p class="small">Expanding access is a core part of who we are, not an afterthought.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOLARSHIP DETAILS -->
+<section class="scholarship" id="scholarship">
+  <div class="container">
+    <div class="section-label">Partnership Details</div>
+    <h2 class="section-title">The <span>Scholarship Package</span></h2>
+    <div class="scholarship-box">
+      <div class="price">$400<span style="font-size: 1.5rem; color: var(--gray);">/month</span></div>
+      <div class="price-sub">Reduced from our standard $450/month rate — includes everything below</div>
+      <div class="scholarship-details">
+        <div class="scholarship-detail">
+          <h5>Target Athletes</h5>
+          <p>8th–10th graders who are serious about development and ready to commit to the ADAPT family full-time.</p>
+        </div>
+        <div class="scholarship-detail">
+          <h5>Attendance Expectation</h5>
+          <p>80% participation in team activities and programming. We'll help coordinate carpooling to make consistent attendance possible.</p>
+        </div>
+        <div class="scholarship-detail">
+          <h5>6 Days a Week</h5>
+          <p>Team practices, skills sessions, performance training, film, open gym, and 1-2 tournaments per month. The full ADAPT experience.</p>
+        </div>
+        <div class="scholarship-detail">
+          <h5>After-School Access</h5>
+          <p>Athletes can come in right after school every day — homework space, training, and a positive environment until team activities begin.</p>
+        </div>
+        <div class="scholarship-detail">
+          <h5>Summer Academy Option</h5>
+          <p>Scholarship athletes may also attend select weeks of our Summer Academy for an immersive, life-changing training experience.</p>
+        </div>
+        <div class="scholarship-detail">
+          <h5>Full Family Membership</h5>
+          <p>Not a separate track — scholarship athletes are fully integrated into teams and treated as family, just like every other ADAPT member.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <h2>Let's <span style="color: var(--gold);">Build This Together</span></h2>
+  <p>We believe every young athlete deserves access to real development, real mentorship, and a real family. Let's talk about how MADE For All and ADAPT Academy can make that happen.</p>
+  <a href="mailto:info@adaptacademysf.com" class="cta-btn">Get In Touch</a>
+  <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--gray);">
+    info@adaptacademysf.com &nbsp;·&nbsp; (786) 244-3336
+  </p>
+  <p style="margin-top: 3rem; font-size: 0.7rem; color: #555;">
+    © 2026 ADAPT Academy / By Any Means Basketball. All Rights Reserved.
+  </p>
+</section>
+
+</body>
+</html>
