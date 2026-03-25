@@ -13,7 +13,6 @@
       --black: #000;
       --dark: #0a0a0a;
       --dark2: #111;
-      --dark3: #181818;
       --white: #fff;
       --gray: #aaa;
       --light-gray: #ccc;
@@ -33,6 +32,7 @@
     }
     a { color: var(--gold); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    img { display: block; width: 100%; }
 
     /* NAV */
     nav {
@@ -110,41 +110,43 @@
       font-weight: 300;
     }
 
-    /* PHOTO BREAK */
-    .photo-break {
+    /* PHOTO GALLERY - portrait images in a row */
+    .photo-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 0;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 0 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .photo-break img {
+    .photo-gallery img {
       width: 100%;
-      height: 350px;
+      border-radius: 4px;
+      aspect-ratio: 3/4;
       object-fit: cover;
-      display: block;
     }
-    .photo-break.single img {
-      height: 450px;
-      grid-column: 1 / -1;
+
+    /* SECTION WITH PHOTO - text + portrait image side by side */
+    .section-with-photo {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 3rem;
+      align-items: start;
     }
-    .photo-single {
-      width: 100%;
-      overflow: hidden;
+    .section-with-photo.photo-left {
+      grid-template-columns: 380px 1fr;
     }
-    .photo-single img {
-      width: 100%;
-      height: 450px;
+    .section-with-photo .section-photo img {
+      border-radius: 4px;
+      aspect-ratio: 3/4;
       object-fit: cover;
-      display: block;
-    }
-    .photo-single img.pos-top {
-      object-position: center 25%;
     }
 
     /* ABOUT */
     .about { background: var(--dark); }
     .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
-      margin-top: 3rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      margin-top: 2.5rem;
     }
     .about-card {
       background: var(--dark2);
@@ -170,7 +172,6 @@
       border: 1px solid rgba(226,221,159,0.08);
       padding: 2rem;
       border-radius: 4px;
-      position: relative;
     }
     .why-card .icon {
       font-size: 2rem;
@@ -209,15 +210,11 @@
 
     /* CULTURE */
     .culture { background: var(--black); }
-    .culture-content {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
-      margin-top: 3rem;
-      align-items: start;
-    }
     .culture-text { color: var(--gray); font-size: 1rem; font-weight: 300; }
     .culture-text p { margin-bottom: 1.2rem; }
     .culture-highlights {
       display: flex; flex-direction: column; gap: 1rem;
+      margin-top: 1.5rem;
     }
     .culture-highlight {
       background: var(--dark2);
@@ -339,29 +336,29 @@
     }
     .cta h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
     .cta p { color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; font-weight: 300; }
-    .cta-btn {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--black);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem;
-      padding: 0.9rem 3rem;
-      letter-spacing: 0.05em;
-      border: none;
-      cursor: pointer;
-      transition: opacity 0.2s;
-    }
-    .cta-btn:hover { opacity: 0.85; text-decoration: none; }
 
     /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .section-with-photo,
+      .section-with-photo.photo-left {
+        grid-template-columns: 1fr;
+      }
+      .section-with-photo .section-photo { order: -1; }
+      .section-with-photo .section-photo img {
+        max-height: 500px;
+        width: 100%;
+      }
+    }
     @media (max-width: 768px) {
       nav .nav-links { display: none; }
-      .about-grid, .culture-content, .summer-flex { grid-template-columns: 1fr; }
+      .about-grid, .summer-flex { grid-template-columns: 1fr; }
       .why-grid, .coaches-grid { grid-template-columns: 1fr; }
       .scholarship-box { padding: 2rem; }
       section { padding: 3.5rem 1.5rem; }
-      .photo-break img { height: 250px; }
-      .photo-single img { height: 300px; }
+      .photo-gallery { grid-template-columns: 1fr 1fr; padding: 0 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .photo-gallery { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -388,10 +385,13 @@
   <p class="sub">Scholarshipping underserved athletes into South Florida's most development-focused basketball program, where growth, family, and opportunity come first.</p>
 </section>
 
-<!-- PHOTO BREAK: Game Action + Training -->
-<div class="photo-break">
+<!-- PHOTO GALLERY -->
+<div class="photo-gallery" style="margin-bottom: 0; padding-bottom: 2rem;">
   <img src="images/game-action.jpg" alt="ADAPT Academy athlete in game action" />
   <img src="images/training.jpg" alt="Athletes training at DETAIL Miami" />
+  <img src="images/culture.jpg" alt="ADAPT Academy family culture" />
+  <img src="images/team-huddle.jpg" alt="ADAPT Academy team at tournament" />
+  <img src="images/tournament.jpg" alt="ADAPT Academy tournament action" />
 </div>
 
 <!-- ABOUT -->
@@ -461,11 +461,6 @@
     </div>
   </div>
 </section>
-
-<!-- PHOTO: Culture -->
-<div class="photo-single">
-  <img src="images/culture.jpg" alt="ADAPT Academy family culture at DETAIL Miami" class="pos-top" />
-</div>
 
 <!-- WHAT'S INCLUDED -->
 <section class="included" id="included">
@@ -562,39 +557,39 @@
   </div>
 </section>
 
-<!-- CULTURE -->
+<!-- CULTURE with photo -->
 <section class="culture" id="culture">
   <div class="container">
     <div class="section-label">Culture & Family</div>
     <h2 class="section-title">More Than a Team, <span>a Family</span></h2>
-    <div class="culture-content">
-      <div class="culture-text">
-        <p>Before anything else, our mission is to build better humans and foster a close family environment for the athletes we serve. At ADAPT, we don't just coach players for a season and move on. We invest in them as people.</p>
-        <p>Athletes who came through our programs years ago still get love from the staff, still come back to train, and still feel like they belong. That's what family means to us. When a scholarship athlete joins ADAPT, they're not a charity case, they're part of the family. They'll be treated, supported, and developed just like every other athlete in the program.</p>
-        <p>Our coaches build genuine relationships. They know what's going on in their athletes' lives, academically, personally, and on the court. That level of care is what makes the difference for young people who need it most.</p>
+    <div class="section-with-photo" style="margin-top: 2.5rem;">
+      <div>
+        <div class="culture-text">
+          <p>Before anything else, our mission is to build better humans and foster a close family environment for the athletes we serve. At ADAPT, we don't just coach players for a season and move on. We invest in them as people.</p>
+          <p>Athletes who came through our programs years ago still get love from the staff, still come back to train, and still feel like they belong. That's what family means to us. When a scholarship athlete joins ADAPT, they're not a charity case, they're part of the family. They'll be treated, supported, and developed just like every other athlete in the program.</p>
+          <p>Our coaches build genuine relationships. They know what's going on in their athletes' lives, academically, personally, and on the court. That level of care is what makes the difference for young people who need it most.</p>
+        </div>
+        <div class="culture-highlights">
+          <div class="culture-highlight">
+            <h4>After-School Access</h4>
+            <p>Athletes can arrive right after school to do homework, train, hang out, and be in a positive environment until practices and team activities begin. A second home.</p>
+          </div>
+          <div class="culture-highlight">
+            <h4>Lifelong Relationships</h4>
+            <p>We still show love to athletes from years ago. Once you're part of ADAPT, you're part of the family, and that doesn't have an expiration date.</p>
+          </div>
+          <div class="culture-highlight">
+            <h4>Holistic Support</h4>
+            <p>Academic monitoring, mental health resources, life skills seminars, and personal check-ins. We see the full picture of every young person we serve.</p>
+          </div>
+        </div>
       </div>
-      <div class="culture-highlights">
-        <div class="culture-highlight">
-          <h4>After-School Access</h4>
-          <p>Athletes can arrive right after school to do homework, train, hang out, and be in a positive environment until practices and team activities begin. A second home.</p>
-        </div>
-        <div class="culture-highlight">
-          <h4>Lifelong Relationships</h4>
-          <p>We still show love to athletes from years ago. Once you're part of ADAPT, you're part of the family, and that doesn't have an expiration date.</p>
-        </div>
-        <div class="culture-highlight">
-          <h4>Holistic Support</h4>
-          <p>Academic monitoring, mental health resources, life skills seminars, and personal check-ins. We see the full picture of every young person we serve.</p>
-        </div>
+      <div class="section-photo">
+        <img src="images/culture.jpg" alt="ADAPT Academy family culture" />
       </div>
     </div>
   </div>
 </section>
-
-<!-- PHOTO BREAK: Tournament -->
-<div class="photo-single">
-  <img src="images/tournament.jpg" alt="ADAPT Academy team at tournament" class="pos-top" />
-</div>
 
 <!-- COACHES -->
 <section class="coaches" id="coaches">
@@ -626,18 +621,21 @@
   </div>
 </section>
 
-<!-- SUMMER ACADEMY -->
+<!-- SUMMER ACADEMY with photo -->
 <section class="summer" id="summer">
   <div class="container">
     <div class="section-label">Bonus Opportunity</div>
     <h2 class="section-title">Summer Academy, <span>An Added Experience</span></h2>
-    <div class="summer-flex">
-      <div class="summer-info">
-        <p>In addition to the year-round ADAPT program, scholarship athletes could also attend our renowned <strong>Summer Academy</strong> at DETAIL Miami for select weeks during the summer. For three consecutive summers, athletes from around the world have traveled to Miami for this life-changing training experience.</p>
-        <p>The Summer Academy offers daily on-court sessions, performance training, competitive open runs and tournaments, recovery, unique Miami experiences, and exposure to a truly global basketball community with athletes from multiple countries and US states training side by side.</p>
-        <p>This could serve as an incredible supplemental experience for scholarship athletes during school breaks, keeping them active, developing, and connected to the basketball family year-round.</p>
+    <div class="section-with-photo photo-left" style="margin-top: 2.5rem;">
+      <div class="section-photo">
+        <img src="images/training.jpg" alt="Athletes training at DETAIL Miami" />
       </div>
       <div>
+        <div class="summer-info">
+          <p>In addition to the year-round ADAPT program, scholarship athletes could also attend our renowned <strong>Summer Academy</strong> at DETAIL Miami for select weeks during the summer. For three consecutive summers, athletes from around the world have traveled to Miami for this life-changing training experience.</p>
+          <p>The Summer Academy offers daily on-court sessions, performance training, competitive open runs and tournaments, recovery, unique Miami experiences, and exposure to a truly global basketball community with athletes from multiple countries and US states training side by side.</p>
+          <p>This could serve as an incredible supplemental experience for scholarship athletes during school breaks, keeping them active, developing, and connected to the basketball family year-round.</p>
+        </div>
         <h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 1rem;">Summer Academy Includes:</h4>
         <ul class="summer-highlights">
           <li>Daily on-court skills and team training sessions</li>
@@ -654,11 +652,6 @@
     </div>
   </div>
 </section>
-
-<!-- PHOTO: Team Huddle -->
-<div class="photo-single">
-  <img src="images/team-huddle.jpg" alt="ADAPT Academy team huddle at tournament" />
-</div>
 
 <!-- ALREADY DOING THIS -->
 <section class="already">
